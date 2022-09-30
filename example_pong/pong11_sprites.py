@@ -151,18 +151,18 @@ def run():
 	bg_color = pygame.Color('#2F373F')
 	accent_color = (27,35,43)
 	basic_font = pygame.font.Font('freesansbold.ttf', 32)
-	plob_sound = pygame.mixer.Sound("pong.ogg")
-	score_sound = pygame.mixer.Sound("score.ogg")
+	plob_sound = pygame.mixer.Sound("/Users/kaustubhkarthik/Programs/pyqt_testing/example_pong/pong.ogg")
+	score_sound = pygame.mixer.Sound("/Users/kaustubhkarthik/Programs/pyqt_testing/example_pong/score.ogg")
 	middle_strip = pygame.Rect(screen_width/2 - 2,0,4,screen_height)
 
 	# Game objects
-	player = Player('Paddle.png',screen_width - 20,screen_height/2,5)
-	opponent = Opponent('Paddle.png',20,screen_width/2,5)
+	player = Player('/Users/kaustubhkarthik/Programs/pyqt_testing/example_pong/Paddle.png',screen_width - 20,screen_height/2,5)
+	opponent = Opponent('/Users/kaustubhkarthik/Programs/pyqt_testing/example_pong/Paddle.png',20,screen_width/2,5)
 	paddle_group = pygame.sprite.Group()
 	paddle_group.add(player)
 	paddle_group.add(opponent)
 
-	ball = Ball('Ball.png',screen_width/2,screen_height/2,4,4,paddle_group)
+	ball = Ball('/Users/kaustubhkarthik/Programs/pyqt_testing/example_pong/Ball.png',screen_width/2,screen_height/2,4,4,paddle_group)
 	ball_sprite = pygame.sprite.GroupSingle()
 	ball_sprite.add(ball)
 

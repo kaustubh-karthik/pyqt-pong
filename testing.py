@@ -10,7 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.uic import loadUi
-from example_pong import pong11_sprites
+from twoplayer_pong import pong11_sprites
 import sys
 
 class ScreenWindow(QtWidgets.QMainWindow):

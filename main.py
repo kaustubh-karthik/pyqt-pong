@@ -10,7 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.uic import loadUi
-from example_pong import pong11_sprites
+from oneplayer_pong import pong11_sprites
 import sys
 
 class ScreenWindow(QtWidgets.QMainWindow):
@@ -29,6 +29,9 @@ class ScreenWindow(QtWidgets.QMainWindow):
 class Screen1(ScreenWindow, QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__("/Users/kaustubhkarthik/Programs/pyqt_testing/screen_1.ui", 600, 800)
+        self.button_setup()
+    
+    def button_setup(self):
         self.pushButton.clicked.connect(lambda: ScreenManager.change_screen("screen2"))
 
 
@@ -36,22 +39,36 @@ class Screen1(ScreenWindow, QtWidgets.QMainWindow):
 class Screen2(ScreenWindow, QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__("/Users/kaustubhkarthik/Programs/pyqt_testing/screen_2.ui", 247, 483)
-        self.pushButton_2.clicked.connect(self.load_game)
+        self.button_setup()
         
-    def load_game(self):
+    def button_setup(self):
+        self.pushButton.clicked.connect(Screen2.go_back)
+        self.pushButton_2.clicked.connect(Screen2.play)
+        
+    def play():
+        current_text = ScreenManager.screens["screen2"].comboBox.currentText()
+        if current_text:
+            Screen2.load_game()
+        
+    def load_game():
         ScreenManager.get_screen().hide()
         pong11_sprites.run()
+        
+    def go_back():
+        ScreenManager.change_screen("screen1")
+    
+    
 
     
 
 class ScreenManager(QtWidgets.QMainWindow):
     app = QtWidgets.QApplication(sys.argv)
     widget = QtWidgets.QStackedWidget()
-    screen_objects_dict = {}
+    screens = {}
 
-    def setup(*screens):
-        for i, screen in enumerate(screens):
-            ScreenManager.screen_objects_dict.update({"screen" + str(i+1):screen})
+    def setup(*all_screens):
+        for i, screen in enumerate(all_screens):
+            ScreenManager.screens.update({"screen" + str(i+1):screen})
             ScreenManager.widget.addWidget(screen)
             
     def get_screen():
@@ -68,7 +85,7 @@ class ScreenManager(QtWidgets.QMainWindow):
         sys.exit(ScreenManager.app.exec_())
         
     def change_screen(screen_str):
-        screen = ScreenManager.screen_objects_dict[screen_str]
+        screen = ScreenManager.screens[screen_str]
         ScreenManager.widget.setCurrentWidget(screen)
         ScreenManager.update_screen()
         

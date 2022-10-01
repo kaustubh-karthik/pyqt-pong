@@ -11,8 +11,8 @@ hands = mp_hands.Hands()
 mp_draw = mp.solutions.drawing_utils
 
 # Variables
-screen_width = 1080
-screen_height = 800
+screen_width = 1280
+screen_height = 960
 
 def get_hand_landmarks():
     success, img = cap.read()

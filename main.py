@@ -10,7 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.uic import loadUi
-from oneplayer_pong import pong11_sprites
+from oneplayer_pong import main
 import sys
 
 class ScreenWindow(QtWidgets.QMainWindow):
@@ -52,7 +52,7 @@ class Screen2(ScreenWindow, QtWidgets.QMainWindow):
         
     def load_game():
         ScreenManager.get_screen().hide()
-        pong11_sprites.run()
+        main.run()
         
     def go_back():
         ScreenManager.change_screen("screen1")

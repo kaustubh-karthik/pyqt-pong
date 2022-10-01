@@ -10,7 +10,9 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.uic import loadUi
-from oneplayer_pong import main
+from oneplayer_pong import main as one_pong
+from twoplayer_pong import main as two_pong
+from onehand_pong import main as hand_pong
 import sys
 
 class ScreenWindow(QtWidgets.QMainWindow):
@@ -47,12 +49,18 @@ class Screen2(ScreenWindow, QtWidgets.QMainWindow):
         
     def play():
         current_text = ScreenManager.screens["screen2"].comboBox.currentText()
-        if current_text:
-            Screen2.load_game()
+        if current_text == "Classic - 1p":
+            Screen2.load_game(one_pong)
+        elif current_text == "Classic - 2p":
+            Screen2.load_game(two_pong)
+        elif current_text == "Hand Pong - 1p":
+            Screen2.load_game(hand_pong)
+        else:
+            print("NOT WORKING")
         
-    def load_game():
+    def load_game(game_folder):
         ScreenManager.get_screen().hide()
-        main.run()
+        game_folder.run()
         
     def go_back():
         ScreenManager.change_screen("screen1")

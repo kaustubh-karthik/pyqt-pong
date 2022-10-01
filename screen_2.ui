@@ -54,12 +54,7 @@ color: rgb(0, 26, 255);</string>
     </item>
     <item>
      <property name="text">
-      <string>Zen</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Atomic</string>
+      <string>Hand Pong - 1p</string>
      </property>
     </item>
    </widget>

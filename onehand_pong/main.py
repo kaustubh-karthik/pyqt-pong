@@ -1,6 +1,9 @@
-import pygame, sys, random
-import hand_coords
 def run():
+	import pygame, sys, random
+	import hand_coords
+	sys.path.insert(0, '/Users/kaustubhkarthik/Programs/pyqt_testing/onehand_pong/hand_coords.py')
+
+
 	class Block(pygame.sprite.Sprite):
 		def __init__(self,x_pos,y_pos, width, height):
 			super().__init__()

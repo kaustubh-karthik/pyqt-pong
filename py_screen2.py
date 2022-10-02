@@ -14,31 +14,39 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(483, 247)
-        MainWindow.setStyleSheet("background-color: rgb(0, 197, 255);")
+        MainWindow.resize(482, 243)
+        MainWindow.setStyleSheet("background-image:url(/Users/kaustubhkarthik/Programs/pyqt_testing/pong_play.png)")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.comboBox = QtWidgets.QComboBox(self.centralwidget)
-        self.comboBox.setGeometry(QtCore.QRect(70, 110, 121, 31))
-        self.comboBox.setStyleSheet("color: rgb(255, 255, 255);\n"
-"background-color: rgb(255, 12, 0);")
-        self.comboBox.setEditable(False)
-        self.comboBox.setIconSize(QtCore.QSize(16, 16))
-        self.comboBox.setObjectName("comboBox")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(10, 0, 51, 31))
-        self.pushButton.setStyleSheet("background-color: rgb(1, 50, 255);\n"
+        self.select_mode = QtWidgets.QComboBox(self.centralwidget)
+        self.select_mode.setGeometry(QtCore.QRect(180, 170, 121, 31))
+        self.select_mode.setStyleSheet("background-color: rgb(255, 12, 0);\n"
+"color: rgb(0, 26, 255);")
+        self.select_mode.setEditable(False)
+        self.select_mode.setIconSize(QtCore.QSize(16, 16))
+        self.select_mode.setObjectName("select_mode")
+        self.select_mode.addItem("")
+        self.select_mode.addItem("")
+        self.select_mode.addItem("")
+        self.back_button = QtWidgets.QPushButton(self.centralwidget)
+        self.back_button.setGeometry(QtCore.QRect(10, 0, 51, 31))
+        self.back_button.setStyleSheet("background-color: rgb(1, 50, 255);\n"
 "color: rgb(255, 16, 0);")
-        self.pushButton.setObjectName("pushButton")
-        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_2.setGeometry(QtCore.QRect(300, 110, 100, 32))
-        self.pushButton_2.setStyleSheet("background-color: rgb(0, 255, 11);\n"
-"color: rgb(86, 1, 255);")
-        self.pushButton_2.setObjectName("pushButton_2")
+        self.back_button.setObjectName("back_button")
+        self.play_button = QtWidgets.QPushButton(self.centralwidget)
+        self.play_button.setGeometry(QtCore.QRect(175, 110, 127, 32))
+        self.play_button.setStyleSheet("background-color: rgb(0, 255, 11);\n"
+"color: rgb(227, 255, 251);\n"
+"")
+        self.play_button.setObjectName("play_button")
+        self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label.setGeometry(QtCore.QRect(200, 150, 81, 16))
+        self.label.setStyleSheet("color: rgb(255, 255, 255);")
+        self.label.setObjectName("label")
+        self.settings_button = QtWidgets.QToolButton(self.centralwidget)
+        self.settings_button.setGeometry(QtCore.QRect(420, 10, 34, 34))
+        self.settings_button.setStyleSheet("background-image:url(/Users/kaustubhkarthik/Programs/pyqt_testing/cog_wheel.png)")
+        self.settings_button.setObjectName("settings_button")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -50,13 +58,14 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.comboBox.setPlaceholderText(_translate("MainWindow", "Select Mode"))
-        self.comboBox.setItemText(0, _translate("MainWindow", "Classic - 1p"))
-        self.comboBox.setItemText(1, _translate("MainWindow", "Classic - 2p"))
-        self.comboBox.setItemText(2, _translate("MainWindow", "Zen"))
-        self.comboBox.setItemText(3, _translate("MainWindow", "Atomic"))
-        self.pushButton.setText(_translate("MainWindow", "BACK"))
-        self.pushButton_2.setText(_translate("MainWindow", "PLAY!"))
+        self.select_mode.setPlaceholderText(_translate("MainWindow", "Select Mode"))
+        self.select_mode.setItemText(0, _translate("MainWindow", "Classic - 1p"))
+        self.select_mode.setItemText(1, _translate("MainWindow", "Classic - 2p"))
+        self.select_mode.setItemText(2, _translate("MainWindow", "Hand Pong - 1p"))
+        self.back_button.setText(_translate("MainWindow", "BACK"))
+        self.play_button.setText(_translate("MainWindow", "PLAY!"))
+        self.label.setText(_translate("MainWindow", "Select Mode"))
+        self.settings_button.setText(_translate("MainWindow", "..."))
 
 
 if __name__ == "__main__":

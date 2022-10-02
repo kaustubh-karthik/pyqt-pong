@@ -124,6 +124,15 @@ class Screen3(ScreenWindow, QtWidgets.QMainWindow):
     def button_setup(self):
         self.back_button.clicked.connect(self.go_back)
         self.save_button.clicked.connect(self.save)
+        self.default_button.clicked.connect(self.reset_defaults)
+        
+    def reset_defaults(self):
+        self.key_values['slider_values'] = [3, 5, 30, 140, 40, 0]
+        self.key_values['spin_box_values'] = [7, 7, 0, 0]
+        
+        self.save_to_file()
+        self.slider_setup()
+        self.spin_box_setup()
 
     def go_back(self):
         ScreenManager.change_screen("screen2")

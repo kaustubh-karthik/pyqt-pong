@@ -97,8 +97,17 @@
       <height>25</height>
      </rect>
     </property>
+    <property name="minimum">
+     <number>0</number>
+    </property>
     <property name="maximum">
-     <number>30</number>
+     <number>50</number>
+    </property>
+    <property name="singleStep">
+     <number>1</number>
+    </property>
+    <property name="value">
+     <number>0</number>
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
@@ -113,8 +122,14 @@
       <height>25</height>
      </rect>
     </property>
+    <property name="minimum">
+     <number>0</number>
+    </property>
     <property name="maximum">
-     <number>30</number>
+     <number>150</number>
+    </property>
+    <property name="value">
+     <number>0</number>
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
@@ -130,7 +145,7 @@
      </rect>
     </property>
     <property name="maximum">
-     <number>30</number>
+     <number>500</number>
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
@@ -327,8 +342,14 @@
       <height>25</height>
      </rect>
     </property>
+    <property name="minimum">
+     <number>0</number>
+    </property>
     <property name="maximum">
-     <number>30</number>
+     <number>150</number>
+    </property>
+    <property name="value">
+     <number>0</number>
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
@@ -350,79 +371,79 @@
    <widget class="QLCDNumber" name="ball_speed_lcd">
     <property name="geometry">
      <rect>
-      <x>520</x>
+      <x>510</x>
       <y>95</y>
-      <width>31</width>
+      <width>41</width>
       <height>31</height>
      </rect>
     </property>
     <property name="digitCount">
-     <number>2</number>
+     <number>3</number>
     </property>
    </widget>
    <widget class="QLCDNumber" name="player_speed_lcd">
     <property name="geometry">
      <rect>
-      <x>520</x>
+      <x>510</x>
       <y>135</y>
-      <width>31</width>
+      <width>41</width>
       <height>31</height>
      </rect>
     </property>
     <property name="digitCount">
-     <number>2</number>
+     <number>3</number>
     </property>
    </widget>
    <widget class="QLCDNumber" name="ball_size_lcd">
     <property name="geometry">
      <rect>
-      <x>520</x>
+      <x>510</x>
       <y>175</y>
-      <width>31</width>
+      <width>41</width>
       <height>31</height>
      </rect>
     </property>
     <property name="digitCount">
-     <number>2</number>
+     <number>3</number>
     </property>
    </widget>
    <widget class="QLCDNumber" name="player_size_lcd">
     <property name="geometry">
      <rect>
-      <x>520</x>
+      <x>510</x>
       <y>215</y>
-      <width>31</width>
+      <width>41</width>
       <height>31</height>
      </rect>
     </property>
     <property name="digitCount">
-     <number>2</number>
+     <number>3</number>
     </property>
    </widget>
    <widget class="QLCDNumber" name="rebound_y_lcd">
     <property name="geometry">
      <rect>
-      <x>520</x>
+      <x>510</x>
       <y>255</y>
-      <width>31</width>
+      <width>41</width>
       <height>31</height>
      </rect>
     </property>
     <property name="digitCount">
-     <number>2</number>
+     <number>3</number>
     </property>
    </widget>
    <widget class="QLCDNumber" name="bounce_acceleration_lcd">
     <property name="geometry">
      <rect>
-      <x>520</x>
+      <x>510</x>
       <y>295</y>
-      <width>31</width>
+      <width>41</width>
       <height>31</height>
      </rect>
     </property>
     <property name="digitCount">
-     <number>2</number>
+     <number>3</number>
     </property>
    </widget>
    <widget class="QPushButton" name="save_button">

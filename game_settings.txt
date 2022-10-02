@@ -1,2 +1,2 @@
-slider_values=[5, 4, 4, 4, 4, 4]
+slider_values=[3, 30, 36, 198, 0, 10]
 spin_box_values=[7, 7, 0, 0]

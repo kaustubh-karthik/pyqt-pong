@@ -3,6 +3,8 @@ def run(slider_variables, spin_box_variables):
 	import hand_coords
 	sys.path.insert(0, '/Users/kaustubhkarthik/Programs/pyqt_testing/onehand_pong/hand_coords.py')
 
+	ball_speed, player_speed, ball_size, player_size, rebound_y, x_acceleration = slider_variables
+
 
 	class Block(pygame.sprite.Sprite):
 		def __init__(self,x_pos,y_pos, width, height):
@@ -37,10 +39,10 @@ def run(slider_variables, spin_box_variables):
 	class Ball(Block):
 		def __init__(self, x_pos, y_pos, width, height, speed_x, speed_y):
 			super().__init__(x_pos, y_pos, width, height)
-			self.default_speed_x = speed_x
-			self.default_speed_y = speed_y
-			self.speed_x = speed_x * random.choice((-1,1))
-			self.speed_y = speed_y * random.choice((-1,1))
+			self.default_speed_x = speed_x * 4
+			self.default_speed_y = speed_y * 4
+			self.speed_x = speed_x * random.choice((-1,1)) * 4
+			self.speed_y = speed_y * random.choice((-1,1)) * 4
 			self.active = False
 			self.score_time = 0
     
@@ -58,16 +60,16 @@ def run(slider_variables, spin_box_variables):
 				self.speed_y *= -1
 
 			if self.rect.colliderect(player):
-				place_hit = (self.rect.y + 30/2) - (player.rect.y + 140/2)
-				self.speed_x += slider_variables[5]*4
+				place_hit = (self.rect.y + ball_size/2) - (player.rect.y + player_size/2)
+				self.speed_x += x_acceleration/10
 				self.speed_x *= -1
-				self.speed_y = slider_variables[4]*4*(place_hit/75)
+				self.speed_y = (rebound_y/10)*(place_hit/(player_size))
 
 			elif self.rect.colliderect(opponent):
-				place_hit = (self.rect.y + 30/2) - (opponent.rect.y + 140/2)
+				place_hit = (self.rect.y + ball_size/2) - (opponent.rect.y + player_size/2)
 				self.speed_x *= -1
-				self.speed_x += slider_variables[5]*4
-				self.speed_y = slider_variables[4]*4*(place_hit/75)
+				self.speed_x += x_acceleration/10
+				self.speed_y = (rebound_y/10)*(place_hit/(player_size/2))
 
 			self.rect.x += self.speed_x
 			self.rect.y += self.speed_y
@@ -197,9 +199,9 @@ def run(slider_variables, spin_box_variables):
 	middle_strip = pygame.Rect(screen_width/2 - 2,0,4,screen_height)
 
 	# Game objects
-	ball = Ball(screen_width / 2 - 15, screen_height / 2 - 15, slider_variables[2], slider_variables[2], slider_variables[0], slider_variables[0])
-	player = Player(screen_width - 20, screen_height / 2 - 70, 10, slider_variables[3], slider_variables[1])
-	opponent = Opponent(10, screen_height / 2 - 70, 10, slider_variables[3], slider_variables[1])
+	ball = Ball(screen_width / 2 - 15, screen_height / 2 - 15, ball_size, ball_size, ball_speed, ball_speed)
+	player = Player(screen_width - 20, screen_height / 2 - 70, 10, player_size, player_speed)
+	opponent = Opponent(10, screen_height / 2 - 70, 10, player_size, player_speed)
 
 	game_manager = GameManager(ball, player, opponent) 
 

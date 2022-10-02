@@ -1,5 +1,7 @@
 import pygame, sys, random
 def run(slider_variables, spin_box_variables):
+	ball_speed, player_speed, ball_size, player_size, rebound_y, x_acceleration = slider_variables
+
 	class Block(pygame.sprite.Sprite):
 		def __init__(self,x_pos,y_pos, width, height):
 			super().__init__()
@@ -45,16 +47,16 @@ def run(slider_variables, spin_box_variables):
 				self.speed_y *= -1
 
 			if self.rect.colliderect(player1):
-				place_hit = (self.rect.y + 30/2) - (player1.rect.y + 140/2)
-				self.speed_x += slider_variables[5]
+				place_hit = (self.rect.y + ball_size/2) - (player1.rect.y + player_size/2)
+				self.speed_x += x_acceleration/10
 				self.speed_x *= -1
-				self.speed_y = slider_variables[4]*(place_hit/75)
+				self.speed_y = rebound_y/10*(place_hit/(player_size/2))
 
 			elif self.rect.colliderect(player2):
-				place_hit = (self.rect.y + 30/2) - (player2.rect.y + 140/2)
+				place_hit = (self.rect.y + ball_size/2) - (player2.rect.y + player_size/2)
 				self.speed_x *= -1
-				self.speed_x += slider_variables[5]
-				self.speed_y = slider_variables[4]*(place_hit/75)
+				self.speed_x += x_acceleration/10
+				self.speed_y = rebound_y/10*(place_hit/(player_size/2))
 
 			self.rect.x += self.speed_x
 			self.rect.y += self.speed_y
@@ -166,11 +168,11 @@ def run(slider_variables, spin_box_variables):
 	middle_strip = pygame.Rect(screen_width/2 - 2,0,4,screen_height)
 
 	# Game objects
-	ball = Ball(screen_width / 2 - 15, screen_height / 2 - 15, slider_variables[2], slider_variables[2], slider_variables[0], slider_variables[0])
-	player11 = Player(screen_width - 20, screen_height / 2 - 70, 10, slider_variables[3], slider_variables[1])
-	player12 = Player(10, screen_height / 2 - 70, 10, slider_variables[3], slider_variables[1])
+	ball = Ball(screen_width / 2 - 15, screen_height / 2 - 15, ball_size, ball_size, ball_speed, ball_speed)
+	player1 = Player(screen_width - 20, screen_height / 2 - 70, 10, player_size, player_speed)
+	player2 = Player(10, screen_height / 2 - 70, 10, player_size, player_speed)
 
-	game_manager = GameManager(ball, player11, player12)
+	game_manager = GameManager(ball, player1, player2)
 
 	while True:
 		for event in pygame.event.get():
@@ -181,26 +183,26 @@ def run(slider_variables, spin_box_variables):
             # Right Player Movement
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_UP:
-					player11.movement -= player11.speed
+					player1.movement -= player1.speed
 				if event.key == pygame.K_DOWN:
-					player11.movement += player11.speed
+					player1.movement += player1.speed
 			if event.type == pygame.KEYUP:
 				if event.key == pygame.K_UP:
-					player11.movement += player11.speed
+					player1.movement += player1.speed
 				if event.key == pygame.K_DOWN:
-					player11.movement -= player11.speed
+					player1.movement -= player1.speed
 
             # Left Player Movement
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_w:
-					player12.movement -= player12.speed
+					player2.movement -= player2.speed
 				if event.key == pygame.K_s:
-					player12.movement += player12.speed
+					player2.movement += player2.speed
 			if event.type == pygame.KEYUP:
 				if event.key == pygame.K_w:
-					player12.movement += player12.speed
+					player2.movement += player2.speed
 				if event.key == pygame.K_s:
-					player12.movement -= player12.speed
+					player2.movement -= player2.speed
 			
 		# Background Stuff
 		screen.fill(bg_color)

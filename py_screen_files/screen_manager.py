@@ -28,4 +28,3 @@ class ScreenManager(QtWidgets.QMainWindow):
         screen = ScreenManager.screens[screen_str]
         ScreenManager.widget.setCurrentWidget(screen)
         ScreenManager.update_screen()
-        

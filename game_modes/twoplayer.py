@@ -214,6 +214,3 @@ def run(slider_variables, spin_box_variables):
 		# Rendering
 		pygame.display.flip()
 		clock.tick(120)
-
-if __name__ == "__main__":
-	run()

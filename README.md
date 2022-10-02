@@ -1,2 +1,2 @@
 # pyqt-pong
-example using pyqt to start a game
+pong game using py-qt as a user interface

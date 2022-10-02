@@ -46,6 +46,7 @@ class Screen2(ScreenWindow, QtWidgets.QMainWindow):
     def button_setup(self):
         self.back_button.clicked.connect(Screen2.go_back)
         self.play_button.clicked.connect(Screen2.play)
+        self.settings_button.clicked.connect(Screen2.load_settings)
         
     def play():
         current_text = ScreenManager.screens["screen2"].select_mode.currentText()
@@ -64,9 +65,26 @@ class Screen2(ScreenWindow, QtWidgets.QMainWindow):
         
     def go_back():
         ScreenManager.change_screen("screen1")
+    
+    def load_settings():
+        ScreenManager.change_screen("screen3")
         
 class Screen2_Settings(ScreenWindow, QtWidgets.QMainWindow):
-    pass
+    def __init__(self):
+        super().__init__("/Users/kaustubhkarthik/Programs/pyqt_testing/screen_2_settings.ui", 361, 569)
+        self.button_setup()
+        
+    def button_setup(self):
+        self.sliders = [self.ball_speed_slider, self.player_speed_slider, self.ball_size_slider, self.player_size_slider, self.rebound_y_slider,  self.bounce_acceleration_slider]
+        self.back_button.clicked.connect(Screen2_Settings.go_back)
+        self.save_button.clicked.connect(Screen2_Settings.save)
+        
+    def go_back():
+        ScreenManager.change_screen("screen2")
+    
+    def save():
+        pass
+        
     
     
 
@@ -104,7 +122,8 @@ class ScreenManager(QtWidgets.QMainWindow):
 if __name__ == "__main__":
     screen1 = Screen1()
     screen2 = Screen2()
+    screen3 = Screen2_Settings()
     
-    ScreenManager.setup(screen1, screen2)
+    ScreenManager.setup(screen1, screen2, screen3)
     ScreenManager.show_screen()
     

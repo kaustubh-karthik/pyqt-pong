@@ -23,9 +23,9 @@ class Ui_MainWindow(object):
         self.ball_speed_slider.setMaximum(30)
         self.ball_speed_slider.setOrientation(QtCore.Qt.Horizontal)
         self.ball_speed_slider.setObjectName("ball_speed_slider")
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(10, 10, 51, 31))
-        self.pushButton.setObjectName("pushButton")
+        self.back_button = QtWidgets.QPushButton(self.centralwidget)
+        self.back_button.setGeometry(QtCore.QRect(10, 10, 51, 31))
+        self.back_button.setObjectName("back_button")
         self.ball_speed = QtWidgets.QLabel(self.centralwidget)
         self.ball_speed.setGeometry(QtCore.QRect(40, 100, 71, 16))
         self.ball_speed.setObjectName("ball_speed")
@@ -140,7 +140,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.pushButton.setText(_translate("MainWindow", "BACK"))
+        self.back_button.setText(_translate("MainWindow", "BACK"))
         self.ball_speed.setText(_translate("MainWindow", "Ball Speed"))
         self.player_speed.setText(_translate("MainWindow", "Player Speed"))
         self.label_2.setText(_translate("MainWindow", "Points To Win"))

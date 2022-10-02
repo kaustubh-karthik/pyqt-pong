@@ -163,8 +163,8 @@ def run(slider_variables, spin_box_variables):
 	bg_color = pygame.Color('#2F373F')
 	accent_color = (27,35,43)
 	basic_font = pygame.font.Font('freesansbold.ttf', 32)
-	plob_sound = pygame.mixer.Sound("/Users/kaustubhkarthik/Programs/pyqt_testing/onehand_pong/pong.ogg")
-	score_sound = pygame.mixer.Sound("/Users/kaustubhkarthik/Programs/pyqt_testing/onehand_pong/score.ogg")
+	plob_sound = pygame.mixer.Sound("/Users/kaustubhkarthik/Programs/pyqt_testing/extras/pong.ogg")
+	score_sound = pygame.mixer.Sound("/Users/kaustubhkarthik/Programs/pyqt_testing/extras/score.ogg")
 	middle_strip = pygame.Rect(screen_width/2 - 2,0,4,screen_height)
 
 	# Game objects

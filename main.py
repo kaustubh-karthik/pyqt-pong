@@ -11,9 +11,9 @@
 from importlib.resources import read_text
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.uic import loadUi
-from oneplayer_pong import main as one_pong
-from twoplayer_pong import main as two_pong
-from onehand_pong import main as hand_pong
+from game_modes import oneplayer as one_pong
+from game_modes import twoplayer as two_pong
+from game_modes import onehand as hand_pong
 import sys
 
 class ScreenWindow(QtWidgets.QMainWindow):
@@ -31,7 +31,7 @@ class ScreenWindow(QtWidgets.QMainWindow):
 
 class Screen1(ScreenWindow, QtWidgets.QMainWindow):
     def __init__(self):
-        super().__init__("/Users/kaustubhkarthik/Programs/pyqt_testing/screen_1.ui", 600, 800)
+        super().__init__("/Users/kaustubhkarthik/Programs/pyqt_testing/ui_files/screen_1.ui", 600, 800)
         self.button_setup()
     
     def button_setup(self):
@@ -41,7 +41,7 @@ class Screen1(ScreenWindow, QtWidgets.QMainWindow):
 
 class Screen2(ScreenWindow, QtWidgets.QMainWindow):
     def __init__(self):
-        super().__init__("/Users/kaustubhkarthik/Programs/pyqt_testing/screen_2.ui", 247, 483)
+        super().__init__("/Users/kaustubhkarthik/Programs/pyqt_testing/ui_files/screen_2.ui", 247, 483)
         self.button_setup()
         
     def button_setup(self):
@@ -81,7 +81,7 @@ class Screen2(ScreenWindow, QtWidgets.QMainWindow):
 class Screen3(ScreenWindow, QtWidgets.QMainWindow):
 
     def __init__(self):
-        super().__init__("/Users/kaustubhkarthik/Programs/pyqt_testing/screen_3.ui", 361, 569)
+        super().__init__("/Users/kaustubhkarthik/Programs/pyqt_testing/ui_files/screen_3.ui", 361, 569)
         self.key_values = Screen3.read_text_values()
         self.button_setup()
         self.slider_setup()

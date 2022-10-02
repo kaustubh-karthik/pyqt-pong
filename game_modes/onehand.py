@@ -1,6 +1,6 @@
 def run(slider_variables, spin_box_variables):
 	import pygame, sys, random
-	import hand_coords
+	from extras import hand_coords
 	sys.path.insert(0, '/Users/kaustubhkarthik/Programs/pyqt_testing/onehand_pong/hand_coords.py')
 
 	ball_speed, player_speed, ball_size, player_size, rebound_y, x_acceleration = slider_variables
@@ -194,14 +194,14 @@ def run(slider_variables, spin_box_variables):
 	bg_color = pygame.Color('#2F373F')
 	accent_color = (27,35,43)
 	basic_font = pygame.font.Font('freesansbold.ttf', 32)
-	plob_sound = pygame.mixer.Sound("/Users/kaustubhkarthik/Programs/pyqt_testing/onehand_pong/pong.ogg")
-	score_sound = pygame.mixer.Sound("/Users/kaustubhkarthik/Programs/pyqt_testing/onehand_pong/score.ogg")
+	plob_sound = pygame.mixer.Sound("/Users/kaustubhkarthik/Programs/pyqt_testing/extras/pong.ogg")
+	score_sound = pygame.mixer.Sound("/Users/kaustubhkarthik/Programs/pyqt_testing/extras/score.ogg")
 	middle_strip = pygame.Rect(screen_width/2 - 2,0,4,screen_height)
 
 	# Game objects
 	ball = Ball(screen_width / 2 - 15, screen_height / 2 - 15, ball_size, ball_size, ball_speed, ball_speed)
 	player = Player(screen_width - 20, screen_height / 2 - 70, 10, player_size, player_speed)
-	opponent = Opponent(10, screen_height / 2 - 70, 10, player_size, player_speed)
+	opponent = Opponent(10, screen_height / 2 - 70, 10, player_size, player_speed * 4)
 
 	game_manager = GameManager(ball, player, opponent) 
 

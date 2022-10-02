@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-image:url(/Users/kaustubhkarthik/Programs/pyqt_testing/pong_play.png)</string>
+   <string notr="true">background-image:url(/Users/kaustubhkarthik/Programs/pyqt_testing/bg_images/pong_play.png)</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QComboBox" name="select_mode">
@@ -119,7 +119,7 @@ color: rgb(227, 255, 251);
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image:url(/Users/kaustubhkarthik/Programs/pyqt_testing/cog_wheel.png)</string>
+     <string notr="true">background-image:url(/Users/kaustubhkarthik/Programs/pyqt_testing/bg_images/cog_wheel.png)</string>
     </property>
     <property name="text">
      <string>...</string>

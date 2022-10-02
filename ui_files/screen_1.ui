@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-image:url(/Users/kaustubhkarthik/Programs/pyqt_testing/welcome_pong.jpg)
+   <string notr="true">background-image:url(/Users/kaustubhkarthik/Programs/pyqt_testing/bg_images/welcome_pong.jpg)
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">

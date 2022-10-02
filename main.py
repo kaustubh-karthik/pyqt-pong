@@ -44,11 +44,11 @@ class Screen2(ScreenWindow, QtWidgets.QMainWindow):
         self.button_setup()
         
     def button_setup(self):
-        self.pushButton.clicked.connect(Screen2.go_back)
-        self.pushButton_2.clicked.connect(Screen2.play)
+        self.back_button.clicked.connect(Screen2.go_back)
+        self.play_button.clicked.connect(Screen2.play)
         
     def play():
-        current_text = ScreenManager.screens["screen2"].comboBox.currentText()
+        current_text = ScreenManager.screens["screen2"].select_mode.currentText()
         if current_text == "Classic - 1p":
             Screen2.load_game(one_pong)
         elif current_text == "Classic - 2p":
@@ -64,6 +64,9 @@ class Screen2(ScreenWindow, QtWidgets.QMainWindow):
         
     def go_back():
         ScreenManager.change_screen("screen1")
+        
+class Screen2_Settings(ScreenWindow, QtWidgets.QMainWindow):
+    pass
     
     
 

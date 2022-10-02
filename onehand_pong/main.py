@@ -1,4 +1,4 @@
-def run():
+def run(slider_variables, spin_box_variables):
 	import pygame, sys, random
 	import hand_coords
 	sys.path.insert(0, '/Users/kaustubhkarthik/Programs/pyqt_testing/onehand_pong/hand_coords.py')
@@ -189,8 +189,6 @@ def run():
 	pygame.display.set_caption('Pong')
 
 	# Global Variables
-	slider_variables = [3, 5, 30, 140, 5, 1]
-	spin_box_variables = [7, 7, 0, 0]
 	bg_color = pygame.Color('#2F373F')
 	accent_color = (27,35,43)
 	basic_font = pygame.font.Font('freesansbold.ttf', 32)

@@ -1,5 +1,5 @@
 import pygame, sys, random
-def run():
+def run(slider_variables, spin_box_variables):
 	class Block(pygame.sprite.Sprite):
 		def __init__(self,x_pos,y_pos, width, height):
 			super().__init__()
@@ -176,8 +176,6 @@ def run():
 	pygame.display.set_caption('Pong')
 
 	# Global Variables
-	slider_variables = [3, 5, 30, 140, 5, 1]
-	spin_box_variables = [7, 7, 0, 0]
 	bg_color = pygame.Color('#2F373F')
 	accent_color = (27,35,43)
 	basic_font = pygame.font.Font('freesansbold.ttf', 32)

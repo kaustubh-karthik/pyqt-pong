@@ -46,13 +46,15 @@ def run():
 
 			if self.rect.colliderect(player1):
 				place_hit = (self.rect.y + 30/2) - (player1.rect.y + 140/2)
+				self.speed_x += slider_variables[5]
 				self.speed_x *= -1
-				self.speed_y = 5*(place_hit/75)
+				self.speed_y = slider_variables[4]*(place_hit/75)
 
 			elif self.rect.colliderect(player2):
 				place_hit = (self.rect.y + 30/2) - (player2.rect.y + 140/2)
 				self.speed_x *= -1
-				self.speed_y = 5*(place_hit/75)
+				self.speed_x += slider_variables[5]
+				self.speed_y = slider_variables[4]*(place_hit/75)
 
 			self.rect.x += self.speed_x
 			self.rect.y += self.speed_y
@@ -95,8 +97,8 @@ def run():
 			self.player1 = player1
 			self.player2 = player2
 			self.ball = ball
-			self.player1_score = 0
-			self.player2_score = 0
+			self.player1_score = spin_box_variables[2]
+			self.player2_score = spin_box_variables[3]
 			self.red = (255, 0, 0)
 
 		def run_game(self):
@@ -130,6 +132,18 @@ def run():
 			elif ball.rect.left <= 0:
 				ball.reset_ball()
 				self.player1_score += 1
+    
+			if self.player2_score >= spin_box_variables[1]:
+				player2_win_message = basic_font.render("Opponent Wins!!!",True,accent_color)
+				player2_win_rect = player2_win_message.get_rect(midright = (screen_width / 2 - 100,screen_height/2))
+				screen.blit(player2_win_message, player2_win_rect)
+				self.ball.active = False
+		
+			elif self.player1_score >= spin_box_variables[0]:
+				player1_win_message = basic_font.render("Player Wins!!!",True,accent_color)
+				player1_win_rect = player1_win_message.get_rect(midright = (screen_width / 2 + 300,screen_height/2))
+				screen.blit(player1_win_message, player1_win_rect)
+				self.ball.active = False
 
 
 	# General setup
@@ -144,6 +158,8 @@ def run():
 	pygame.display.set_caption('Pong')
 
 	# Global Variables
+	slider_variables = [3, 5, 30, 140, 5, 1]
+	spin_box_variables = [7, 7, 0, 0]
 	bg_color = pygame.Color('#2F373F')
 	accent_color = (27,35,43)
 	basic_font = pygame.font.Font('freesansbold.ttf', 32)
@@ -152,11 +168,11 @@ def run():
 	middle_strip = pygame.Rect(screen_width/2 - 2,0,4,screen_height)
 
 	# Game objects
-	ball = Ball(screen_width / 2 - 15, screen_height / 2 - 15, 30, 30, 3, 3)
-	player1 = Player(screen_width - 20, screen_height / 2 - 70, 10,140, 5)
-	player2 = Player(10, screen_height / 2 - 70, 10,140, 5)
+	ball = Ball(screen_width / 2 - 15, screen_height / 2 - 15, slider_variables[2], slider_variables[2], slider_variables[0], slider_variables[0])
+	player11 = Player(screen_width - 20, screen_height / 2 - 70, 10, slider_variables[3], slider_variables[1])
+	player12 = Player(10, screen_height / 2 - 70, 10, slider_variables[3], slider_variables[1])
 
-	game_manager = GameManager(ball, player1, player2)
+	game_manager = GameManager(ball, player11, player12)
 
 	while True:
 		for event in pygame.event.get():
@@ -167,26 +183,26 @@ def run():
             # Right Player Movement
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_UP:
-					player1.movement -= player1.speed
+					player11.movement -= player11.speed
 				if event.key == pygame.K_DOWN:
-					player1.movement += player1.speed
+					player11.movement += player11.speed
 			if event.type == pygame.KEYUP:
 				if event.key == pygame.K_UP:
-					player1.movement += player1.speed
+					player11.movement += player11.speed
 				if event.key == pygame.K_DOWN:
-					player1.movement -= player1.speed
+					player11.movement -= player11.speed
 
             # Left Player Movement
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_w:
-					player2.movement -= player2.speed
+					player12.movement -= player12.speed
 				if event.key == pygame.K_s:
-					player2.movement += player2.speed
+					player12.movement += player12.speed
 			if event.type == pygame.KEYUP:
 				if event.key == pygame.K_w:
-					player2.movement += player2.speed
+					player12.movement += player12.speed
 				if event.key == pygame.K_s:
-					player2.movement -= player2.speed
+					player12.movement -= player12.speed
 			
 		# Background Stuff
 		screen.fill(bg_color)

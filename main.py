@@ -48,14 +48,17 @@ class Screen2(ScreenWindow, QtWidgets.QMainWindow):
         self.play_button.clicked.connect(Screen2.play)
         self.settings_button.clicked.connect(Screen2.load_settings)
         
+        
     def play():
+        games = [one_pong, two_pong, hand_pong]
         current_text = ScreenManager.screens["screen2"].select_mode.currentText()
+        game_values = ScreenManager.screens["screen3"].get_values()
         if current_text == "Classic - 1p":
-            Screen2.load_game(one_pong)
+            Screen2.load_game(games[0])
         elif current_text == "Classic - 2p":
-            Screen2.load_game(two_pong)
+            Screen2.load_game(games[1])
         elif current_text == "Hand Pong - 1p":
-            Screen2.load_game(hand_pong)
+            Screen2.load_game(games[2])
         else:
             print("NOT WORKING")
         
@@ -70,30 +73,34 @@ class Screen2(ScreenWindow, QtWidgets.QMainWindow):
         ScreenManager.change_screen("screen3")
         
 class Screen3(ScreenWindow, QtWidgets.QMainWindow):
+
     def __init__(self):
         super().__init__("/Users/kaustubhkarthik/Programs/pyqt_testing/screen_3.ui", 361, 569)
+        self.key_values = Screen3.read_text_values()
         self.button_setup()
         self.slider_setup()
         self.spin_box_setup()
         
-    def read_text_values(self):
+    def read_text_values():
         with open("game_settings.txt", "r") as settings:
             values = settings.readlines()
-            key_values = {line.split('=')[0]:eval(line.split('=')[1]) for line in values}
-        return key_values
+        return {line.split('=')[0]:[int(x) for x in eval(line.split('=')[1])] for line in values}
         
     def set_values(self, object_list, values):
         for i, value in enumerate(values):
             object_list[i].setValue(value)
+            
+    def get_values(self):
+        return self.key_values
                    
     def slider_setup(self):
         self.sliders = [self.ball_speed_slider, self.player_speed_slider, self.ball_size_slider, self.player_size_slider, self.rebound_y_slider,  self.bounce_acceleration_slider]
-        self.slider_values = self.read_text_values()['slider_values']
+        self.slider_values = self.key_values['slider_values']
         self.set_values(self.sliders, self.slider_values)
         
     def spin_box_setup(self):
         self.spin_boxes = [self.player1_points_to_win, self.player2_points_to_win, self.player1_starting_points, self.player2_starting_points]
-        self.spin_box_values = self.read_text_values()['spin_box_values']
+        self.spin_box_values = self.key_values['spin_box_values']
         self.set_values(self.spin_boxes, self.spin_box_values)
         
     def button_setup(self):
@@ -129,7 +136,6 @@ class ScreenManager(QtWidgets.QMainWindow):
         current_screen = ScreenManager.get_screen()
         current_screen.set_dimensions()
         
-    
     def show_screen():
         ScreenManager.update_screen()
         ScreenManager.widget.show()

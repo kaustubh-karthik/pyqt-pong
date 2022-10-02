@@ -1,0 +1,2 @@
+slider_values=[5, 4, 4, 4, 4, 4]
+spin_box_values=[7, 7, 0, 0]

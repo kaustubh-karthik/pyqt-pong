@@ -69,22 +69,44 @@ class Screen2(ScreenWindow, QtWidgets.QMainWindow):
     def load_settings():
         ScreenManager.change_screen("screen3")
         
-class Screen2_Settings(ScreenWindow, QtWidgets.QMainWindow):
+class Screen3(ScreenWindow, QtWidgets.QMainWindow):
     def __init__(self):
-        super().__init__("/Users/kaustubhkarthik/Programs/pyqt_testing/screen_2_settings.ui", 361, 569)
+        super().__init__("/Users/kaustubhkarthik/Programs/pyqt_testing/screen_3.ui", 361, 569)
         self.button_setup()
+        self.slider_setup()
+        self.spin_box_setup()
+        
+    def read_text_values(self):
+        with open("game_settings.txt", "r") as settings:
+            values = settings.readlines()
+            key_values = {line.split('=')[0]:eval(line.split('=')[1]) for line in values}
+        return key_values
+        
+    def set_values(self, object_list, values):
+        for i, value in enumerate(values):
+            object_list[i].setValue(value)
+                   
+    def slider_setup(self):
+        self.sliders = [self.ball_speed_slider, self.player_speed_slider, self.ball_size_slider, self.player_size_slider, self.rebound_y_slider,  self.bounce_acceleration_slider]
+        self.slider_values = self.read_text_values()['slider_values']
+        self.set_values(self.sliders, self.slider_values)
+        
+    def spin_box_setup(self):
+        self.spin_boxes = [self.player1_points_to_win, self.player2_points_to_win, self.player1_starting_points, self.player2_starting_points]
+        self.spin_box_values = self.read_text_values()['spin_box_values']
+        self.set_values(self.spin_boxes, self.spin_box_values)
         
     def button_setup(self):
-        self.sliders = [self.ball_speed_slider, self.player_speed_slider, self.ball_size_slider, self.player_size_slider, self.rebound_y_slider,  self.bounce_acceleration_slider]
-        self.back_button.clicked.connect(Screen2_Settings.go_back)
-        self.save_button.clicked.connect(Screen2_Settings.save)
-        
-    def go_back():
+        self.back_button.clicked.connect(self.go_back)
+        self.save_button.clicked.connect(self.save)
+
+    def go_back(self):
         ScreenManager.change_screen("screen2")
     
-    def save():
-        pass
-        
+    def save(self):
+        with open("game_settings.txt", "w") as settings:
+            settings.write('slider_values=' + str(self.slider_values))
+            settings.write('\nspin_box_values=' + str(self.spin_box_values))
     
     
 
@@ -122,7 +144,7 @@ class ScreenManager(QtWidgets.QMainWindow):
 if __name__ == "__main__":
     screen1 = Screen1()
     screen2 = Screen2()
-    screen3 = Screen2_Settings()
+    screen3 = Screen3()
     
     ScreenManager.setup(screen1, screen2, screen3)
     ScreenManager.show_screen()
